@@ -196,11 +196,12 @@ class CodeCompletion(object):
         token_code = self._tokenize_text(code[:offset])
         scopes = self._search_for_scope(token_code)
         # Find section to attempt for code completion (var_segment)
+        # Something like "ninja_ide.foo.bar"
         var_segment = self._search_for_completion_segment(token_code)
         words = var_segment.split('.', 1)
         words_final = var_segment.rsplit('.', 1)
         # Main_attribute is the stem off of which to search for completions
-        # i.e. in exec(ninja_ide.gui. ..., "ninja_ide.gui.main_panel"
+        # i.e. in exec(ninja_ide.gui. ..., "ninja_ide"
         # would be main_attribute.
         main_attribute = words[0].strip().split('(', 1)
         attr_name = main_attribute[0]
